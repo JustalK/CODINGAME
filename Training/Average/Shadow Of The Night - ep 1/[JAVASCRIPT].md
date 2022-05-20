@@ -14,7 +14,7 @@ let right = W - 1;
 let bottom = 0;
 let top = H - 1;
 
-while (true) {
+for(;;) {
     const bombDir = readline();
 
     if (bombDir.includes('U')) {
