@@ -13,3 +13,16 @@ for (let i = 1; i < inputs.length; i++) {
 
 console.log(result);
 ```
+
+### Alternative
+
+```Javascript
+var n = parseInt(readline()); // the number of temperatures to analyse
+var inputs = readline().split(' ');
+
+var r = inputs.sort((a,b)=>{return Math.abs(a)-Math.abs(b)|| b-a});
+
+var r=r[0]||0;
+
+print(r);
+```
