@@ -22,7 +22,7 @@ for (let i = 0; i < N; i++) {
 }
 
 let result = '';
-let distance = 10**999999999;
+let distance = Infinity;
 for (let i = 0; i < listDefib.length; i++) {
    const x = (listDefib[i].lon - LON) * Math.cos((LAT + listDefib[i].lat)/2)
    const y = (listDefib[i].lat - LAT)
