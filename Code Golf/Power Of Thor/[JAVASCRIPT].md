@@ -58,18 +58,18 @@ When you group everything together, you can create a simple checker that will ch
 # straight lines : 28 8 7 8  =>  'E' * 27
 # north          : 5 4 5 17  =>  'N' * 13
 # easy angle     : 31 17 0 3 =>  'S' * 14 + 'E' * 31
-# optimal angle  : 0 17 36 0 => 'SW' * 17 + 'W' * 19
+# optimal angle  : 0 17 36 0 =>  'S' * 17 + 'W' * 19
 
 S
-0 17 36 0
-31 17 0 3
+0 17 36 0          16 15 14 13
+31 17 0 3          16 15 14 13
 
-5 4 5 17
+5 4 5 17             5 6 7 8 9
 N
 
-28 8 7 8
+28 8 7 8           8 8 8 8 8
 3
 
 ```Javascript
-for([a,b,,d]=readline().split` `,a='WE'[a%3]||'';;)print((b==d?'':--b<d?'N':'S')+a)
+for([a,b,,d]=readline().split` `,w='WE'[a%3]||'';;)print((b==d?'':--b<d?'N':'S')+w)
 ```

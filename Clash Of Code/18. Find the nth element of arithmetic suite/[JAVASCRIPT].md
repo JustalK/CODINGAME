@@ -20,10 +20,12 @@ Output:
 
 ## Solution
 
+Character: 34
 ```Javascript
 r=readline;print(+r()+r()*(r()-1))
 ```
 
+Character: 36
 ```Ruby
-puts gets.to_i+gets.to_i*(gets.to_i-1)
+$><<gets.to_i+gets.to_i.*gets.to_i-1
 ```
