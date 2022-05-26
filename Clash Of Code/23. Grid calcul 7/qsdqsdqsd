@@ -1,0 +1,28 @@
+Goal
+John loves to play with grid games. We have to help him. He is playing with a
+N by N square grid contain numbers.
+Each cell in the grid either 1 or 7. There are exactly C cells which contains 1.
+Find the sum of all numbers that are not 1
+Input
+Line : 1 C
+Line : 2 N
+N lines Grid
+Output
+The sum of all numbers that are not 1
+Constraints
+1 ≤ N ≤ 100
+0 ≤ C ≤ 10000
+Example
+Input
+4
+3
+1 7 1
+1 1 7
+7 7 7
+Output
+35
+
+```Javascript
+for(f=readline,n=f(f(r=0));n--;)r+=f().match(/7/g)?.length||0
+print(r*7)
+```
