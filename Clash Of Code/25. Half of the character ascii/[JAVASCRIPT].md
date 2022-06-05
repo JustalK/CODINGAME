@@ -1,4 +1,4 @@
-Goal
+# Goal
 The half of a character c is the character whose ascii code is half (rounded down) of the ascii code of the character c.
 
 Given a character s, print its half.
