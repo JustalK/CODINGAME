@@ -71,5 +71,8 @@ N
 3
 
 ```Javascript
-for([a,b,,d]=readline().split` `,w='WE'[a%3]||'';;)print((b==d?'':--b<d?'N':'S')+w)
+for([a,b,,d]=readline().split` `;;)print((b-d?'SN'[--b<d&1]:'')+('WE'[a%3]||''))
 ```
+
+
+for([a,b,,d]=readline().split` `;;)print((b-d?'SN'[--b<d&1]:'')+('WE'[a%3]||''))
