@@ -52,27 +52,15 @@ I have 2 others cases where Thor start at respectively position Y=3 and Y=4.
 Finally, I have one last position where Thor start at position Y=14.
 When you group everything together, you can create a simple checker that will choose depending of those values.
 
-### The best: Hard-Coded Solution
-
-# First I need the validator. Because of the small input, only 23 submit were necessary to get :
-# straight lines : 28 8 7 8  =>  'E' * 27
-# north          : 5 4 5 17  =>  'N' * 13
-# easy angle     : 31 17 0 3 =>  'S' * 14 + 'E' * 31
-# optimal angle  : 0 17 36 0 =>  'S' * 17 + 'W' * 19
-
-S
-0 17 36 0          16 15 14 13
-31 17 0 3          16 15 14 13
-
-5 4 5 17             5 6 7 8 9
-N
-
-28 8 7 8           8 8 8 8 8
-3
+### Very hard coded Solution: 80
 
 ```Javascript
 for([a,b,,d]=readline().split` `;;)print((b-d?'SN'[--b<d&1]:'')+('WE'[a%3]||''))
 ```
 
+### Validators
 
-for([a,b,,d]=readline().split` `;;)print((b-d?'SN'[--b<d&1]:'')+('WE'[a%3]||''))
+# straight lines : 28 8 7 8  =>             'E' * 27
+# north          : 5 4 5 17  =>  'N' * 13
+# easy angle     : 31 17 0 3 =>  'S' * 14 + 'E' * 31
+# optimal angle  : 0 17 36 0 =>  'S' * 17 + 'W' * 19
