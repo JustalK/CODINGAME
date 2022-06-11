@@ -8,6 +8,11 @@ print(r)
 ```
 
 ```Javascript
-[...readline(r="",d=99)].map(m=>{for(s=7,c=m.charCodeAt();s--;r+=a==d?"0":(d-99?" ":"")+(a?"0 0":"00 0"),d=a)a=(c>>s)&1})
+[...readline(r="",d=99)].map(m=>{for(s=7;s--;r+=a-d?(d-99?" ":"")+(a?"0 0":"00 0"):"0",d=a)a=(m.charCodeAt()>>s)&1})
 print(r)
 ```
+
+
+
+(d-99?" ":"")+(a?"0 0":"00 0")
+d-99?" ":""
