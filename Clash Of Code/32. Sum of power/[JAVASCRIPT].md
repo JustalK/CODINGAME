@@ -1,12 +1,22 @@
+# Goal
+
 You have to find the sum of the first x powers of a number n starting from 0. You will find that this puzzle will be easier if you know the trick
-Input
+
+## Entrée
+
 n: an integer
 x: an integer
-Output
+
+## Sortie
+
 The sum of the first x powers of n.
-Constraints
+
+## Contraintes
+
 x>=1 and n>=1
-Example
+
+## Example
+
 Input
 2
 5

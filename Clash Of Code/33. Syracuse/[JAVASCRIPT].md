@@ -1,3 +1,5 @@
+# Goal
+
 The Syracuse (or Collatz) suite is defined as follows: given an initial integer greater than 0, we apply the following operations while the integer is different that 1:
 
 - it is divided by 2 when even,
@@ -5,16 +7,20 @@ The Syracuse (or Collatz) suite is defined as follows: given an initial integer 
 
 Your program must display the Syracuse suite of the number N and stop when the value 1 is reached.
 
-INPUT:
+## Entrée
+
 Line 1: An integer N that starts the suite.
 
-OUTPUT:
+## Sortie
+
 Line 1: The values of the Syracuse suite, separated by a space.
 
-CONSTRAINTS:
+## Contraintes
+
 1 ≤ N < 100
 
-EXAMPLE:
+## Example
+
 Input
 5
 Output
