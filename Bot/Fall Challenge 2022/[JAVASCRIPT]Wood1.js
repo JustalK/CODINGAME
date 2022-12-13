@@ -2,10 +2,8 @@ var inputs = readline().split(" ");
 const width = parseInt(inputs[0]);
 const height = parseInt(inputs[1]);
 
-const COST_RECYCLER = 10;
-
 class Tile {
-  constructor(x, y, inputs, owner) {
+  constructor(x, y, input, owner) {
     this.x = x;
     this.y = y;
     this.scrapAmount = parseInt(inputs[0]);
@@ -52,10 +50,11 @@ class Game {
 
     // Playing
     this.canBuild() && this.building();
-
+    this.moveTanks();
     this.printActions();
   }
 
+  // RECYCLER
   building() {
     const tiles = this.getMyOwnFreeTile();
     if (tiles.length > 0) {
@@ -64,18 +63,59 @@ class Game {
   }
 
   canBuild() {
-    return this.myMatter > COST_RECYCLER;
+    return this.myMatter > 10;
   }
 
+  // TANKS
+  moveTanks() {
+    for (const myTank of this.myTanks) {
+      this.moveTank(myTank);
+    }
+  }
+
+  moveTank(myTank) {
+    const adjacentTiles = this.getAdjacentTiles(myTank.x, myTank.y, true);
+    const tile = this.chooseMove(adjacentTiles);
+    if (tile !== null) {
+      this.actions.push(`MOVE 1 ${myTank.x} ${myTank.y} ${tile.x} ${tile.y}`);
+    }
+  }
+
+  chooseMove(tiles) {
+    return tiles[0];
+  }
+
+  // TILES
   getMyOwnFreeTile() {
     const positionTanks = this.myTanks.map((t) => `${t.x}, ${t.y}`);
-    console.warn(positionTanks);
     return this.map.filter(
       (t) =>
         t.owner === 1 &&
         t.recycler === 0 &&
         !positionTanks.includes(`${t.x}, ${t.y}`)
     );
+  }
+
+  getAdjacentTiles(x, y, onlyScrapable = false) {
+    const rsl = [];
+    const adjacentPositions = [
+      [x - 1, y],
+      [x + 1, y],
+      [x, y - 1],
+      [x, y + 1],
+    ];
+    if (onlyScrapable) {
+      return adjacentPositions
+        .map((p) => this.getTileAt(p[0], p[1]))
+        .filter((t) => t && t.scrapAmount !== 0);
+    }
+    return adjacentPositions
+      .map((p) => this.getTileAt(p[0], p[1]))
+      .filter((t) => t !== null);
+  }
+
+  getTileAt(x, y) {
+    return this.map.find((t) => t.x === x && t.y === y);
   }
 
   printActions() {
