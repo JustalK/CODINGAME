@@ -1,3 +1,8 @@
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
 var inputs = readline().split(" ");
 const width = parseInt(inputs[0]);
 const height = parseInt(inputs[1]);
@@ -68,21 +73,69 @@ class Game {
 
   // TANKS
   moveTanks() {
+    const myFront = this.getMyClosestTankToEnnemies();
+    const myScout = this.getMyFurthestTankToEnnemies();
     for (const myTank of this.myTanks) {
-      this.moveTank(myTank);
+      if (myTank !== myScout) {
+        this.moveTank(myTank, myFront, myScout);
+      }
     }
   }
 
-  moveTank(myTank) {
+  moveTank(myTank, myFront, myScout) {
     const adjacentTiles = this.getAdjacentTiles(myTank.x, myTank.y, true);
     const tile = this.chooseMove(adjacentTiles);
     if (tile !== null) {
-      this.actions.push(`MOVE 1 ${myTank.x} ${myTank.y} ${tile.x} ${tile.y}`);
+      this.actions.push(
+        `MOVE 1 ${myTank.x} ${myTank.y} ${myFront.x} ${myFront.y}`
+      );
     }
   }
 
   chooseMove(tiles) {
     return tiles[0];
+  }
+
+  getMyClosestTankToEnnemies() {
+    let tank = null;
+    let distance = 0;
+    for (const myTank of this.myTanks) {
+      for (const ennemyTank of this.ennemiesTanks) {
+        const tmpDistance = this.distanceTiles(
+          myTank.x,
+          myTank.y,
+          ennemyTank.x,
+          ennemyTank.y
+        );
+        if (!tank || tmpDistance < distance) {
+          tank = myTank;
+          distance = tmpDistance;
+        }
+      }
+    }
+
+    return tank;
+  }
+
+  getMyFurthestTankToEnnemies() {
+    let tank = null;
+    let distance = 0;
+    for (const myTank of this.myTanks) {
+      for (const ennemyTank of this.ennemiesTanks) {
+        const tmpDistance = this.distanceTiles(
+          myTank.x,
+          myTank.y,
+          ennemyTank.x,
+          ennemyTank.y
+        );
+        if (!tank || tmpDistance > distance) {
+          tank = myTank;
+          distance = tmpDistance;
+        }
+      }
+    }
+
+    return tank;
   }
 
   // TILES
@@ -94,6 +147,10 @@ class Game {
         t.recycler === 0 &&
         !positionTanks.includes(`${t.x}, ${t.y}`)
     );
+  }
+
+  distanceTiles(x1, y1, x2, y2) {
+    return Math.abs(x2 - x1) + Math.abs(y2 - y1);
   }
 
   getAdjacentTiles(x, y, onlyScrapable = false) {
