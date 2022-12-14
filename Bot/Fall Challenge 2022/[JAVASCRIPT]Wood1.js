@@ -1,14 +1,9 @@
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-
 var inputs = readline().split(" ");
 const width = parseInt(inputs[0]);
 const height = parseInt(inputs[1]);
 
 class Tile {
-  constructor(x, y, input, owner) {
+  constructor(x, y, inputs, owner) {
     this.x = x;
     this.y = y;
     this.scrapAmount = parseInt(inputs[0]);
@@ -17,6 +12,11 @@ class Tile {
     this.canBuild = parseInt(inputs[4]);
     this.canSpawn = parseInt(inputs[5]);
     this.inRangeOfRecycler = parseInt(inputs[6]);
+    this.totalScrapable = 0;
+  }
+
+  setTotalScrapable(value) {
+    this.totalScrapable = value;
   }
 }
 
@@ -53,22 +53,44 @@ class Game {
       }
     }
 
+    // Set Informations
+    this.setScrapableCapacity();
     // Playing
     this.canBuild() && this.building();
     this.moveTanks();
     this.printActions();
   }
 
+  setScrapableCapacity() {
+    const myTiles = this.map.filter((t) => t.owner === 1);
+    for (const myTile of myTiles) {
+      const adjacentTiles = this.getAdjacentTiles(myTile.x, myTile.y);
+      const tmpTotalScrapable = adjacentTiles.reduce(
+        (acc, t) => (t ? acc + t.scrapAmount : acc),
+        0
+      );
+      myTile.setTotalScrapable(tmpTotalScrapable);
+    }
+  }
+
   // RECYCLER
   building() {
     const tiles = this.getMyOwnFreeTile();
-    if (tiles.length > 0) {
-      this.actions.push(`BUILD ${tiles[0].x} ${tiles[0].y}`);
+    const getGoodTiles = tiles.filter((t) => t.scrapAmount === 10);
+    if (getGoodTiles.length > 0) {
+      this.actions.push(`BUILD ${getGoodTiles[0].x} ${getGoodTiles[0].y}`);
+      this.myMatter -= 10;
+    }
+
+    const myFront = this.getMyClosestTankToEnnemies();
+    if (this.myMatter >= 20 && myFront) {
+      const amount = 1;
+      this.actions.push(`SPAWN ${amount} ${myFront.x} ${myFront.y}`);
     }
   }
 
   canBuild() {
-    return this.myMatter > 10;
+    return this.myMatter >= 10;
   }
 
   // TANKS
@@ -76,24 +98,40 @@ class Game {
     const myFront = this.getMyClosestTankToEnnemies();
     const myScout = this.getMyFurthestTankToEnnemies();
     for (const myTank of this.myTanks) {
-      if (myTank !== myScout) {
-        this.moveTank(myTank, myFront, myScout);
-      }
+      this.moveTank(myTank);
     }
   }
 
-  moveTank(myTank, myFront, myScout) {
-    const adjacentTiles = this.getAdjacentTiles(myTank.x, myTank.y, true);
-    const tile = this.chooseMove(adjacentTiles);
-    if (tile !== null) {
+  moveTank(myTank) {
+    let adjacentTiles = this.getAdjacentTiles(myTank.x, myTank.y);
+    adjacentTiles = adjacentTiles.filter(
+      (t) => t && t.recycler !== 1 && t.scrapAmount !== 0
+    );
+    let move = false;
+    for (const adjacentTile of adjacentTiles) {
+      if (adjacentTile && adjacentTile.owner !== 1) {
+        this.actions.push(
+          `MOVE 1 ${myTank.x} ${myTank.y} ${adjacentTile.x} ${adjacentTile.y}`
+        );
+        move = true;
+        break;
+      }
+    }
+
+    if (!move) {
+      const randomIndex = Math.floor(Math.random() * adjacentTiles.length);
       this.actions.push(
-        `MOVE 1 ${myTank.x} ${myTank.y} ${myFront.x} ${myFront.y}`
+        `MOVE 1 ${myTank.x} ${myTank.y} ${adjacentTiles[randomIndex].x} ${adjacentTiles[randomIndex].y}`
       );
     }
   }
 
-  chooseMove(tiles) {
-    return tiles[0];
+  getBestScrapableTile() {
+    return this.myTiles.reduce(
+      (best, current) =>
+        best.totalScrapable > current.totalScrapable ? best : current,
+      this.myTiles[0]
+    );
   }
 
   getMyClosestTankToEnnemies() {
