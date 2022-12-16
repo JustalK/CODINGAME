@@ -13,15 +13,25 @@ class Tile {
     this.y = y;
     this.scrapAmount = parseInt(inputs[0]);
     this.owner = owner;
+    this.units = parseInt(inputs[2]);
     this.recycler = parseInt(inputs[3]);
     this.canBuild = parseInt(inputs[4]);
     this.canSpawn = parseInt(inputs[5]);
     this.inRangeOfRecycler = parseInt(inputs[6]);
     this.totalScrapable = 0;
+    this.willSpawn = false;
   }
 
   setTotalScrapable(value) {
     this.totalScrapable = value;
+  }
+
+  setTotalOwnerable(value) {
+    this.totalOwnerable = value;
+  }
+
+  setWillSpawn(value) {
+    this.willSpawn = value;
   }
 }
 
@@ -32,7 +42,7 @@ class Tank {
   }
 }
 
-class Whatever {
+class Game {
   constructor() {
     this.map = [];
     this.myTanks = [];
@@ -59,22 +69,32 @@ class Whatever {
     }
 
     // Set Informations
-    this.setScrapableCapacity();
+    this.setAdditionnalInformationTile();
     // Playing
     this.canBuild() && this.building();
     this.moveTanks();
     this.printActions();
   }
 
-  setScrapableCapacity() {
+  setAdditionnalInformationTile() {
     const myTiles = this.map.filter((t) => t.owner === 1);
     for (const myTile of myTiles) {
       const adjacentTiles = this.getAdjacentTiles(myTile.x, myTile.y);
+      const diagonalTiles = this.getDiagonalTiles(myTile.x, myTile.y);
+      const totalTankAround = diagonalTiles.reduce(
+        (acc, t) => (t ? acc + t.units : acc),
+        0
+      );
       const tmpTotalScrapable = adjacentTiles.reduce(
         (acc, t) => (t ? acc + t.scrapAmount : acc),
         0
       );
+      const tmpTotalOwnerable = adjacentTiles.reduce(
+        (acc, t) => (t && t.owner !== 1 && t.scrapAmount > 0 ? acc + 1 : acc),
+        0
+      );
       myTile.setTotalScrapable(tmpTotalScrapable);
+      myTile.setTotalOwnerable(tmpTotalOwnerable - totalTankAround);
     }
   }
 
@@ -82,20 +102,30 @@ class Whatever {
   building() {
     const tiles = this.getMyOwnFreeTile();
     const getGoodTiles = tiles.filter((t) => t.scrapAmount === 10);
-    if (getGoodTiles.length > 0) {
+    if (this.myMatter >= 10 && getGoodTiles.length > 0) {
       this.actions.push(`BUILD ${getGoodTiles[0].x} ${getGoodTiles[0].y}`);
       this.myMatter -= 10;
     }
 
-    const myFront = this.getMyClosestTankToEnnemies();
-    if (this.myMatter >= 20 && myFront) {
-      const amount = 1;
-      this.actions.push(`SPAWN ${amount} ${myFront.x} ${myFront.y}`);
+    for (; this.myMatter >= 10; ) {
+      const tile = this.getMyBestOwnerableTile();
+      if (tile) {
+        const amount = 1;
+        this.actions.push(`SPAWN ${amount} ${tile.x} ${tile.y}`);
+        tile.setWillSpawn(true);
+        this.myMatter -= 10;
+      } else {
+        break;
+      }
     }
   }
 
   canBuild() {
     return this.myMatter >= 10;
+  }
+
+  getMyRecycler() {
+    return this.map.filter((t) => t.owner === 1 && t.recycler == 1);
   }
 
   // TANKS
@@ -194,6 +224,15 @@ class Whatever {
     );
   }
 
+  getMyBestOwnerableTile() {
+    const myTiles = this.map.filter((t) => t.owner === 1 && !t.willSpawn);
+    return myTiles.reduce(
+      (best, current) =>
+        best.totalOwnerable > current.totalOwnerable ? best : current,
+      myTiles[0]
+    );
+  }
+
   distanceTiles(x1, y1, x2, y2) {
     return Math.abs(x2 - x1) + Math.abs(y2 - y1);
   }
@@ -212,6 +251,19 @@ class Whatever {
         .filter((t) => t && t.scrapAmount !== 0);
     }
     return adjacentPositions
+      .map((p) => this.getTileAt(p[0], p[1]))
+      .filter((t) => t !== null);
+  }
+
+  getDiagonalTiles(x, y, onlyScrapable = false) {
+    const rsl = [];
+    const diagonalPositions = [
+      [x - 1, y + 1],
+      [x - 1, y - 1],
+      [x + 1, y + 1],
+      [x - 1, y - 1],
+    ];
+    return diagonalPositions
       .map((p) => this.getTileAt(p[0], p[1]))
       .filter((t) => t !== null);
   }
@@ -269,5 +321,5 @@ class Whatever {
 
 // game loop
 while (true) {
-  new Whatever();
+  new Game();
 }
