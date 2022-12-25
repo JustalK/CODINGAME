@@ -9,22 +9,11 @@ total = []
 
 def change(i, j):
     for offset in range(l):
-        if i - offset >= 0:
-            total[i - offset][j] = l - offset
-        if i + offset < n:
-            total[i + offset][j] = l - offset
-        if j - offset >= 0:
-            total[i][j - offset] = l - offset
-            if i - offset >= 0:
-                total[i - offset][j - offset] = l - offset
-            if i + offset < n:
-                total[i + offset][j - offset] = l - offset
-        if j + offset < n:
-            total[i][j + offset] = l - offset
-            if i - offset >= 0:
-                total[i - offset][j + offset] = l - offset
-            if i + offset < n:
-                total[i + offset][j + offset] = l - offset
+        for x in range(i - offset, i + offset + 1):
+            for y in range(j - offset, j + offset + 1):
+                if x >= 0 and x < n and y >=0 and y < len(total):
+                    if total[x][y] == 'X':
+                        total[x][y] = l - offset
 
 for i in range(n):
     row = []
@@ -36,4 +25,12 @@ for i in range(n):
     for j in range(len(total[i])):
         if 'C' == total[i][j]:
             change(i, j)
+
+result = 0
+for i in range(n):
+    for j in range(len(total[i])):
+        if 'X' == total[i][j]:
+            result+=1
+
+print(result)
 ```
