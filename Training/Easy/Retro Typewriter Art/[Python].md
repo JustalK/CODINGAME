@@ -15,10 +15,22 @@ for x in words:
     line = ""
   # Handling all the other characters
   else:
-    z = re.search(r'\d*', x)
-    print(z.group())
-    line = line + x
+    n = re.search(r'\d+', x)
+    ch = re.search(r'(\D+|\d$)', x)
+    time = n.group()
+    word = ch.group()
+    if time == x:
+      time = time[:-1]
+    elif word == "sp":
+        word = " "
+    elif word == "bS":
+        word = "\\"
+    elif word == "sQ":
+        word = "'"
+    line = line + word * int(time)
 
+rsl.append(line)
 
-print(rsl)
+for x in rsl:
+  print(x)
 ```
