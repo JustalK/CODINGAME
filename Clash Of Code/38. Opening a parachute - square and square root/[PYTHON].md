@@ -1,0 +1,64 @@
+## Goal
+
+You have to activate the parachute of your space vehicle, all the instruments are broken except a three axis accelerometer.
+
+You must open your parachute only once in the atmosphere. If you open it too early your parachute will burn up during re-entry. If you open it too late you will have too much speed and it will be torn appart.
+
+You open the command terminal and decide to code an algorithm that triggers the opening as soon as the acceleration is higher or equal to 9 m/s^2.
+
+The acceleration of the spacecraft is equal to the square root of the sum of squares axes values.
+
+## Input
+line 1 : N the number of measurement point
+line N: X Y Z three floating numbers representing the accelerometer measurements in m/s^2
+
+## Output
+Line N : for each line given as input return 'WAIT' or 'OPEN'.
+## Constraints
+1 ≤ N ≤ 100
+0 <= x,y,z <= 100
+
+## Example
+
+Input
+10
+0.0000 0.0000 0.0000
+0.0000 0.0000 1.0900
+0.0000 0.0000 2.1800
+0.0000 0.0000 3.2700
+0.0000 0.0000 4.3600
+0.0000 0.0000 5.4500
+0.0000 0.0000 6.5400
+0.0000 0.0000 7.6300
+0.0000 0.0000 8.7200
+0.0000 0.0000 9.8100
+
+Output
+WAIT
+WAIT
+WAIT
+WAIT
+WAIT
+WAIT
+WAIT
+WAIT
+WAIT
+OPEN
+
+```py
+import sys
+import math
+
+n = int(input())
+rsl = []
+for i in range(n):
+    x, y, z = [float(j) for j in input().split()]
+    acc = math.sqrt(x ** 2 + y ** 2 + z ** 2)
+    if acc > 9:
+        rsl.append('OPEN')
+    else:
+        rsl.append('WAIT')
+
+for r in rsl:
+    print(r)
+```
