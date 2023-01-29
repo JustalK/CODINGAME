@@ -1,3 +1,5 @@
+## Goal
+
 You have to activate the parachute of your space vehicle, all the instruments are broken except a three axis accelerometer.
 
 You must open your parachute only once in the atmosphere. If you open it too early your parachute will burn up during re-entry. If you open it too late you will have too much speed and it will be torn appart.
@@ -5,15 +7,19 @@ You must open your parachute only once in the atmosphere. If you open it too ear
 You open the command terminal and decide to code an algorithm that triggers the opening as soon as the acceleration is higher or equal to 9 m/s^2.
 
 The acceleration of the spacecraft is equal to the square root of the sum of squares axes values.
-Input
+
+## Input
 line 1 : N the number of measurement point
 line N: X Y Z three floating numbers representing the accelerometer measurements in m/s^2
-Output
+
+## Output
 Line N : for each line given as input return 'WAIT' or 'OPEN'.
-Constraints
+## Constraints
 1 ≤ N ≤ 100
 0 <= x,y,z <= 100
-Example
+
+## Example
+
 Input
 10
 0.0000 0.0000 0.0000
@@ -26,6 +32,7 @@ Input
 0.0000 0.0000 7.6300
 0.0000 0.0000 8.7200
 0.0000 0.0000 9.8100
+
 Output
 WAIT
 WAIT

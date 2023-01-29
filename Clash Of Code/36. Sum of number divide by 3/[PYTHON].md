@@ -1,13 +1,20 @@
+## Goal
+
 For all numbers less or equal to n, you must return the difference between the sum of all the numbers divisible by 3 and the sum of even numbers.
-Input
+
+## Input
 one integer n
 Output
 one integer : the difference between the two sums.
-Constraints
+
+## Constraints
 0 <= n <= 100000
-Example
+
+## Example
+
 Input
 5
+
 Output
 -3
 
