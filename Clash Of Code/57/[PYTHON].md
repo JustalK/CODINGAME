@@ -1,0 +1,39 @@
+## Goal
+
+You are playing Shifumi with an opponent.
+Your opponent and yourself can play Scissors, Hand, Stone or any other string value.
+
+Shifumi rules:
+- Scissors win over Hand
+- Hand win over Stone
+- Stone win over Scissors
+- If your opponent play anything else than Scissors, Hand or Stone, you must tell him Error to win.
+
+You are required to output the winning move.
+
+## Input
+A single string o who should have one of the following values: Scissors, Hand, Stone.
+But a string of some other value may also be given !
+
+## Output
+A single string with one of the following values: Scissors, Hand, Stone, Error
+
+## Constraints
+1 < o length <= 256
+
+## Example
+Input
+Scissors
+Output
+Stone
+
+```py
+if o == 'Hand':
+    print('Scissors')
+elif o == 'Stone':
+    print('Hand')
+elif o == 'Scissors':
+    print('Stone')
+else:
+    print('Error')
+```
