@@ -22,3 +22,9 @@ for (;;) {
 for(;;print(v))for(b=i=0;i<8;i++){h=readline()
 if(h>b){v=i;b=h}}
 ```
+
+### My best solution
+
+```Javascript
+for(;;print(v))for(b=i=0;i<8;i++)h=readline(),h>b&&(v=i,b=h)
+```
