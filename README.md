@@ -39,13 +39,7 @@ Finally, I love the Code Golf. It's completely useless in a professional work en
 
 ## Folders
 
-- **Bot**: My bot for some of the competition
-- **Clah of Code**: Some of the question I have been asked during my clash
-- **Code Golf**: My best result of coding golf
-- **Training**
-
-## Languages
-
-- Javascript
-- Python
-- Java
+- **Puzzles**: A problem is asked, a solution has to be found. You will find my answers there
+- **Code Golf**: Simple code golf challenges, code with the least character possible
+- **Clash of Code**: Some of the question I have been asked during my clash
+- **Bot**: Some of my bots
