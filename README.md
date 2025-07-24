@@ -13,7 +13,6 @@ Code Golf Completed:
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Easy?label=Easy&color=green)](#easy-1)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Medium?label=Medium&color=yellow)](#medium-1)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Hard?label=Hard&color=red)](#hard-1)
-[![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Very%20Hard?label=Very%20Hard&color=purple)](#very-hard-1)
 
 ### 💻 Languages Used
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) 
