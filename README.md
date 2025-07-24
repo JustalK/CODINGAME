@@ -4,12 +4,14 @@
 
 <p> <a href="https://www.codingame.com/profile/6500d04cc2fb5a11a8cab7ff4d94a42a532771"> Click here to view my profile </a></p>
 
-Puzzles Completed:
+<span style="color:red">If you are copy/pasting response or if you find anything that help you progress in your rank, please take the time to give a ⭐ (star) to this repository</span>. I will help me and I will feel more motivated to post more of my answers...
+
+### 🔎 Puzzles Completed
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Puzzles/Easy?label=Easy&color=green)](#easy)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Puzzles/Medium?label=Medium&color=yellow)](#medium)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Puzzles/Hard?label=Hard&color=red)](#hard)
 
-Code Golf Completed:
+### 💡 Code Golf Completed
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Easy?label=Easy&color=green)](#easy-1)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Medium?label=Medium&color=yellow)](#medium-1)
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Code%20Golf/Hard?label=Hard&color=red)](#hard-1)
