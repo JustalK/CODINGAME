@@ -52,6 +52,14 @@ I have 2 others cases where Thor start at respectively position Y=3 and Y=4.
 Finally, I have one last position where Thor start at position Y=14.
 When you group everything together, you can create a simple checker that will choose depending of those values.
 
+### The ugly (2025): Hard-Coded Solution: 67
+
+We are now in 2025, after some refactoring I manage to get a score even lower:
+
+```javascript
+for([a,b,,d]=readline().split` `;;)print((b-->d?'S':'')+'WEN'[a%3])
+```
+
 ### Very hard coded Solution: 80
 
 ```Javascript
