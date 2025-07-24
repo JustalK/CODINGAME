@@ -2,9 +2,10 @@
 
 ![logo](https://logonoid.com/images/codingame-logo.png)
 
-<p> <a href="https://www.codingame.com/profile/6500d04cc2fb5a11a8cab7ff4d94a42a532771"> Click here to view my profile </a></p>
+**Current Rank:** Master  
+<a href="https://www.codingame.com/profile/6500d04cc2fb5a11a8cab7ff4d94a42a532771">Click here to view my profile</a>
 
-<span style="color:red">If you are copy/pasting response or if you find anything that help you progress in your rank, please take the time to give a ⭐ (star) to this repository</span>
+<span style="color:red">If you are copy/pasting response or if you find anything that help you progress in your rank, please take the time to give a ⭐ (star) to this repository</span>  
 It will show me that I am helping some developers and I will feel more motivated to dig deeper to even post better solutions.
 
 ### 🔎 Puzzles Completed
@@ -32,10 +33,6 @@ This repository is a compilation of my games on [CodinGame](https://www.codingam
 I also participate quite often in the Bot competition, I am not that good but I am making progress slowly and slowly. Most of the time, the bots are using algorithm that I am not using in my daily work. So it's a nice way to learn new algorithms.
 
 Finally, I love the Code Golf. It's completely useless in a professional work environment. But it's funny to see how short we can write code. I am nicely ranked in this category since I know all the shortcut of JavaScript.
-
-## Ranks
-
-
 
 ## Folders
 
