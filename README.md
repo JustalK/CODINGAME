@@ -4,7 +4,8 @@
 
 <p> <a href="https://www.codingame.com/profile/6500d04cc2fb5a11a8cab7ff4d94a42a532771"> Click here to view my profile </a></p>
 
-<span style="color:red">If you are copy/pasting response or if you find anything that help you progress in your rank, please take the time to give a ⭐ (star) to this repository</span>. I will help me and I will feel more motivated to post more of my answers...
+<span style="color:red">If you are copy/pasting response or if you find anything that help you progress in your rank, please take the time to give a ⭐ (star) to this repository</span>
+It will show me that I am helping some developers and I will feel more motivated to dig deeper to even post better solutions.
 
 ### 🔎 Puzzles Completed
 [![](https://img.shields.io/github/directory-file-count/justalk/CODINGAME/Puzzles/Easy?label=Easy&color=green)](#easy)
